@@ -1,0 +1,110 @@
+{
+  "_meta": {
+    "description": "SYNTHETIC DATA. This file represents the airline's immutable, legally-approved policy database. In the real architecture this would live in a governed, access-controlled system (e.g. a policy microservice backed by legal-reviewed records), never editable by the chatbot or the LLM.",
+    "version": "1.0",
+    "last_reviewed_by": "Legal & Compliance (synthetic)",
+    "last_reviewed_date": "2026-06-01"
+  },
+  "policies": [
+    {
+      "id": "POL-001",
+      "topic": "bereavement_fare",
+      "title": "Bereavement Travel Discount",
+      "authorized_text": "AirNova offers a 5% discount off standard fares for travel booked due to the death or terminal illness of an immediate family member. This discount must be applied at time of booking and requires supporting documentation submitted within 30 days. AirNova does NOT offer retroactive refunds for bereavement travel after the flight has been completed.",
+      "max_refund_pct": 0,
+      "max_discount_pct": 5,
+      "retroactive_allowed": false,
+      "requires_documentation": true
+    },
+    {
+      "id": "POL-002",
+      "topic": "flight_cancellation_by_airline",
+      "title": "Airline-Initiated Cancellation",
+      "authorized_text": "If AirNova cancels a flight, passengers are entitled to a full refund to the original form of payment, or free rebooking on the next available flight, at the passenger's choice.",
+      "max_refund_pct": 100,
+      "max_discount_pct": 0,
+      "retroactive_allowed": true,
+      "requires_documentation": false
+    },
+    {
+      "id": "POL-003",
+      "topic": "voluntary_cancellation",
+      "title": "Passenger-Initiated Cancellation (Standard Fare)",
+      "authorized_text": "Standard fares cancelled by the passenger more than 24 hours before departure are eligible for a travel credit valid for 12 months, minus a $75 change fee. No cash refunds are issued for voluntary cancellations of standard fares.",
+      "max_refund_pct": 0,
+      "max_discount_pct": 0,
+      "retroactive_allowed": false,
+      "requires_documentation": false
+    },
+    {
+      "id": "POL-004",
+      "topic": "baggage_delay",
+      "title": "Delayed Baggage Compensation",
+      "authorized_text": "If checked baggage is delayed more than 24 hours, AirNova will reimburse reasonable essential purchases up to $100/day for a maximum of 3 days, with original receipts required.",
+      "max_refund_pct": 0,
+      "max_discount_pct": 0,
+      "retroactive_allowed": false,
+      "requires_documentation": true
+    },
+    {
+      "id": "POL-005",
+      "topic": "baggage_lost",
+      "title": "Lost Baggage Compensation",
+      "authorized_text": "Baggage declared lost after 21 days of search is compensated up to $1,700 per passenger, per government-regulated liability limits, upon submission of a claim form and proof of contents.",
+      "max_refund_pct": 0,
+      "max_discount_pct": 0,
+      "retroactive_allowed": false,
+      "requires_documentation": true
+    },
+    {
+      "id": "POL-006",
+      "topic": "flight_delay_compensation",
+      "title": "Flight Delay Compensation",
+      "authorized_text": "Domestic flight delays of 3+ hours caused by factors within AirNova's control are eligible for a $200 travel voucher. Delays caused by weather, air traffic control, or other factors outside AirNova's control are not eligible for compensation, though meal vouchers may be provided for delays over 3 hours.",
+      "max_refund_pct": 0,
+      "max_discount_pct": 0,
+      "retroactive_allowed": false,
+      "requires_documentation": false
+    },
+    {
+      "id": "POL-007",
+      "topic": "overbooking",
+      "title": "Denied Boarding / Overbooking",
+      "authorized_text": "Passengers involuntarily denied boarding due to overbooking are entitled to compensation ranging from $400-$1,350 depending on delay length, per government-mandated schedules, plus rebooking on the next available flight.",
+      "max_refund_pct": 0,
+      "max_discount_pct": 0,
+      "retroactive_allowed": false,
+      "requires_documentation": false
+    },
+    {
+      "id": "POL-008",
+      "topic": "medical_emergency_cancellation",
+      "title": "Medical Emergency Cancellation",
+      "authorized_text": "Passengers who cancel due to a documented medical emergency (self or immediate family) may receive a full travel credit with the $75 change fee waived, valid for 12 months. Cash refunds are not issued.",
+      "max_refund_pct": 0,
+      "max_discount_pct": 100,
+      "retroactive_allowed": false,
+      "requires_documentation": true
+    },
+    {
+      "id": "POL-009",
+      "topic": "pet_travel_fee",
+      "title": "Pet in Cabin Fee",
+      "authorized_text": "A non-refundable fee of $125 each way applies for small pets travelling in-cabin, subject to carrier size restrictions and advance approval.",
+      "max_refund_pct": 0,
+      "max_discount_pct": 0,
+      "retroactive_allowed": false,
+      "requires_documentation": false
+    },
+    {
+      "id": "POL-010",
+      "topic": "unaccompanied_minor",
+      "title": "Unaccompanied Minor Service",
+      "authorized_text": "Children ages 5-11 travelling alone must be enrolled in the Unaccompanied Minor Service for a $150 fee each way, which includes dedicated staff supervision.",
+      "max_refund_pct": 0,
+      "max_discount_pct": 0,
+      "retroactive_allowed": false,
+      "requires_documentation": false
+    }
+  ]
+}
