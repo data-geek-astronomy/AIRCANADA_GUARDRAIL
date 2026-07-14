@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AirNova Guardrail Bot</title>
+<style>
+  :root {
+    --accent: #D0102A;
+    --accent-dim: rgba(208,16,42,0.28);
+    --bg: #0B0B0D;
+    --panel: #151417;
+    --border: #242226;
+    --text: #F2F3F5;
+    --muted: #97A0AE;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(10,10,12,0.75); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: 0.01em; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+  .navlinks { display: flex; gap: 28px; font-size: 0.92rem; color: var(--muted); }
+  .navlinks a:hover { color: var(--text); }
+
+  .hero {
+    position: relative; padding: 110px 0 80px; text-align: center; overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; top: -220px; left: 50%; transform: translateX(-50%);
+    width: 900px; height: 500px; background: radial-gradient(ellipse at center, var(--accent-dim) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .badge {
+    display: inline-block; padding: 6px 16px; border-radius: 999px; border: 1px solid var(--accent);
+    color: var(--accent); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 28px;
+    position: relative;
+  }
+  .hero h1 {
+    font-size: 4.2rem; line-height: 1.02; font-weight: 800; letter-spacing: -0.03em; margin: 0 0 24px;
+    background: linear-gradient(180deg, #fff 0%, #d7dbe2 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+    position: relative;
+  }
+  .hero p.sub {
+    max-width: 640px; margin: 0 auto 40px; color: var(--muted); font-size: 1.15rem; line-height: 1.6;
+    position: relative;
+  }
+  .cta-row { display: flex; gap: 14px; justify-content: center; position: relative; flex-wrap: wrap; }
+  .btn {
+    padding: 15px 28px; border-radius: 12px; font-weight: 700; font-size: 0.98rem; display: inline-block;
+    transition: transform 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: #0A0A0C; box-shadow: 0 8px 30px var(--accent-dim); }
+  .btn-secondary { background: var(--panel); color: var(--text); border: 1px solid var(--border); }
+
+  section { padding: 60px 0; border-top: 1px solid var(--border); }
+  .eyebrow { color: var(--accent); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 14px; }
+
+  .headline-card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 36px 40px;
+    font-size: 1.55rem; font-weight: 600; line-height: 1.45;
+  }
+  .headline-card b { color: var(--accent); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px; }
+  .metric-card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 22px 20px;
+  }
+  .metric-value { font-size: 2.1rem; font-weight: 800; color: var(--accent); margin-bottom: 6px; }
+  .metric-label { color: var(--muted); font-size: 0.88rem; line-height: 1.4; }
+
+  .steps { counter-reset: step; margin-top: 24px; }
+  .step { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    counter-increment: step; flex-shrink: 0; width: 34px; height: 34px; border-radius: 10px;
+    background: var(--panel); border: 1px solid var(--accent); color: var(--accent);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;
+  }
+  .step-num::before { content: counter(step); }
+  .step-title { font-weight: 700; margin-bottom: 4px; }
+  .step-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.55; }
+
+  .findings { display: grid; gap: 14px; margin-top: 20px; }
+  .finding {
+    background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--accent);
+    border-radius: 10px; padding: 18px 20px; font-size: 0.98rem; line-height: 1.6; color: #DCE1E8;
+  }
+
+  footer { padding: 50px 0 70px; text-align: center; color: var(--muted); font-size: 0.88rem; }
+  footer a { color: var(--accent); font-weight: 600; }
+  .footer-links { margin-top: 14px; display: flex; gap: 24px; justify-content: center; }
+
+  code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 2.6rem; }
+    .navlinks { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> AGB &middot; AirNova Guardrail Lab</div>
+    <div class="navlinks">
+      <a href="#results">Results</a>
+      <a href="#method">Method</a>
+      <a href="#findings">Findings</a>
+      <a href="https://github.com/data-geek-astronomy/AIRCANADA_GUARDRAIL">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="badge">RESEARCH PREVIEW &middot; AGB</span>
+    <h1>AirNova Guardrail Bot</h1>
+    <p class="sub">A support chatbot that drafts like a real LLM, then checks every refund, discount, or waiver it promises against an immutable policy database before the customer ever sees it &mdash; the exact safeguard missing from the chatbot that got Air Canada sued.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://huggingface.co/spaces/Darkweb007/AIRCANADA_GUARDRAIL">Launch live demo</a>
+      <a class="btn btn-secondary" href="https://github.com/data-geek-astronomy/AIRCANADA_GUARDRAIL">Read the code</a>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <div class="eyebrow">HEADLINE RESULT</div>
+    <div class="headline-card">Guardrails <b>blocked 6 of 10</b> synthetic support scenarios &mdash; including the exact retroactive-bereavement-refund claim from the real lawsuit &mdash; and replaced each one with the verified policy text instead of the LLM's fabricated promise.</div>
+    <div class="grid">
+      <div class="metric-card"><div class="metric-value">6 / 10</div><div class="metric-label">draft responses blocked as unauthorized commitments</div></div>
+      <div class="metric-card"><div class="metric-value">2 / 10</div><div class="metric-label">commitments verified &amp; passed through, citing the matching policy ID</div></div>
+      <div class="metric-card"><div class="metric-value">0</div><div class="metric-label">unauthorized claims ever reached the mock customer</div></div>
+      <div class="metric-card"><div class="metric-value">10</div><div class="metric-label">policy topics covered by the synthetic authorized-policy database</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <div class="eyebrow">METHOD</div>
+    <h2 style="margin:0 0 6px; font-size:1.6rem;">LLM draft, then a rule it can't talk its way around</h2>
+    <p style="color:var(--muted); max-width:640px; margin:0 0 10px;">Retrieval runs over deliberately messy support content &mdash; the same kind of loosely worded page that caused the real failure &mdash; so the draft step is realistically prone to overreach.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num"></div><div><div class="step-title">Retrieve</div><div class="step-desc">TF-IDF search over a synthetic, intentionally messy support knowledge base (forum posts, marketing blurbs, vague FAQs).</div></div></div>
+      <div class="step"><div class="step-num"></div><div><div class="step-title">Draft</div><div class="step-desc">A generator (mock or real Claude) writes a customer response from that retrieved context.</div></div></div>
+      <div class="step"><div class="step-num"></div><div><div class="step-title">Classify</div><div class="step-desc">A regex commitment classifier flags any refund, discount, waiver, or dollar/percent figure in the draft.</div></div></div>
+      <div class="step"><div class="step-num"></div><div><div class="step-title">Verify</div><div class="step-desc">Every flagged claim is cross-checked against a hardcoded, immutable policy JSON &mdash; never editable by the LLM.</div></div></div>
+      <div class="step"><div class="step-num"></div><div><div class="step-title">Decide</div><div class="step-desc">Authorized claims pass through with a policy citation. Unauthorized ones are blocked and replaced with the real policy text.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="findings">
+  <div class="wrap">
+    <div class="eyebrow">FINDINGS</div>
+    <h2 style="margin:0 0 20px; font-size:1.6rem;">What the synthetic test runs showed</h2>
+    <div class="findings">
+      <div class="finding">The bereavement-refund scenario &mdash; modeled directly on the real Air Canada case &mdash; was correctly blocked: the draft claimed a retroactive full refund, but the authorized policy only allows a 5% pre-booking discount.</div>
+      <div class="finding">Legitimate commitments still get through: an airline-caused cancellation correctly triggers a 100% refund citation against policy POL-002, with no unnecessary blocking.</div>
+      <div class="finding">The verifier caught failure modes beyond simple refunds &mdash; inflated dollar amounts ($300 voucher vs. an authorized $200), and fee waivers with no basis in policy.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>All data on this page is synthetic &mdash; part of a 5-project AI engineering portfolio.</div>
+    <div class="footer-links">
+      <a href="https://huggingface.co/spaces/Darkweb007/AIRCANADA_GUARDRAIL">Live demo</a>
+      <a href="https://github.com/data-geek-astronomy/AIRCANADA_GUARDRAIL">GitHub repo</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

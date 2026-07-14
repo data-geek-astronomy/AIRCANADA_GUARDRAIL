@@ -11,6 +11,8 @@ pinned: false
 
 # AirNova Support — Guardrailed, Rule-Enforced Chatbot
 
+**[View the project landing page](docs/index.html)** (enable GitHub Pages on this repo to host it live — see below) &middot; **[Live interactive demo](https://huggingface.co/spaces/Darkweb007/AIRCANADA_GUARDRAIL)**
+
 **Portfolio project 1 of 5** — a demo response to the [Moffatt v. Air Canada](https://www.cbc.ca/news/canada/british-columbia/air-canada-chatbot-lawsuit-1.7116416)
 ruling, where a tribunal held Air Canada liable for its chatbot fabricating a
 bereavement refund policy that didn't exist. This project shows the
@@ -124,3 +126,7 @@ airline-guardrail-bot/
 | Regex commitment classifier | Fine-tuned classifier, or NVIDIA NeMo Guardrails / Llama Guard |
 | JSON policy file | Governed policy microservice, legal-reviewed, versioned, access-controlled |
 | Rule-based verifier | Same architecture, hardened claim extraction (NLI model or structured-output LLM constrained to the policy schema) |
+
+## Project landing page
+
+`docs/index.html` is a standalone, single-file static landing page (no build step) summarizing the project's results, method, and findings. To host it live on GitHub Pages: repo **Settings → Pages → Source: Deploy from a branch → Branch: main, folder: /docs → Save**. It'll be live within a minute or two at `https://data-geek-astronomy.github.io/AIRCANADA_GUARDRAIL/`.
