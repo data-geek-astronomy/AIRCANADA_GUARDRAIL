@@ -15,6 +15,8 @@ would harden the numeric/claim extraction, but the architecture (LLM draft
 -> classifier -> deterministic verification against an immutable source of
 truth -> approve/block) is the same.
 """
+
+from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 

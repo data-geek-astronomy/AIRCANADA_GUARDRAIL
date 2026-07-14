@@ -14,6 +14,8 @@ Two modes:
     unauthorized commitments -- which is exactly why the verifier step
     exists downstream regardless of which generator is used.
 """
+
+from __future__ import annotations
 import os
 from rag.retriever import Document
 from guardrails.topics import detect_topic

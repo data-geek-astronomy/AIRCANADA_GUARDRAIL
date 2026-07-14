@@ -22,6 +22,8 @@ End-to-end orchestration: retrieval -> generation -> guardrail classification
                    send as-is        block + replace with the verified
                                       authorized policy text, log incident
 """
+
+from __future__ import annotations
 from dataclasses import dataclass, field
 
 from rag.retriever import build_kb_retriever, Document

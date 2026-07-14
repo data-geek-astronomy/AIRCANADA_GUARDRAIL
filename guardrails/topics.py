@@ -4,6 +4,8 @@ In production this would be a small intent classifier; keyword matching keeps
 the demo dependency-free while still being deterministic and auditable.
 """
 
+from __future__ import annotations
+
 TOPIC_KEYWORDS = {
     "bereavement_fare": ["bereavement", "death", "passed away", "funeral", "died", "loss of a"],
     "flight_cancellation_by_airline": ["cancelled my flight", "you cancelled", "airline cancelled", "flight was cancelled"],

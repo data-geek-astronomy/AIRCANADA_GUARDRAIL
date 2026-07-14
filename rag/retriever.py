@@ -17,6 +17,8 @@ anywhere with zero external services or model downloads:
 Swap `TfidfRetriever` for a Qdrant-backed retriever without touching the
 rest of the pipeline -- it only needs to expose `.search(query, k)`.
 """
+
+from __future__ import annotations
 import json
 import os
 from dataclasses import dataclass

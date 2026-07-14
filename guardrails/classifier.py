@@ -12,6 +12,8 @@ authorized policy database.
 Kept rule-based here for zero-dependency portability; swap `contains_commitment`
 for a real classifier's `.predict()` without changing callers.
 """
+
+from __future__ import annotations
 import re
 
 COMMITMENT_PATTERNS = [
