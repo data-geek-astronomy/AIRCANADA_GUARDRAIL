@@ -1,3 +1,14 @@
+---
+title: AIRCANADA GUARDRAIL
+emoji: ✈️
+colorFrom: red
+colorTo: gray
+sdk: streamlit
+sdk_version: "1.38.0"
+app_file: app.py
+pinned: false
+---
+
 # AirNova Support — Guardrailed, Rule-Enforced Chatbot
 
 **Portfolio project 1 of 5** — a demo response to the [Moffatt v. Air Canada](https://www.cbc.ca/news/canada/british-columbia/air-canada-chatbot-lawsuit-1.7116416)
